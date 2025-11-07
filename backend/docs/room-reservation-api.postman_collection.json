@@ -1,0 +1,398 @@
+{
+  "info": {
+    "name": "Room Reservation API - Documentation",
+    "description": "API documentation for Room Reservation System - Complete endpoint reference",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "📚 API Overview",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/health",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "health"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "API Welcome",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🔐 Authentication Endpoints",
+      "item": [
+        {
+          "name": "POST /api/users/register - Register User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/users/register",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "users", "register"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /api/users/login - Login User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/users/login",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "users", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/users/profile - Get User Profile",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE" }],
+            "url": {
+              "raw": "http://localhost:8000/api/users/profile",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "users", "profile"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH /api/users/profile - Update Profile",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Smith\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/users/profile",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "users", "profile"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /api/users/forgot-password - Forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/users/forgot-password",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "users", "forgot-password"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /api/users/reset-password - Reset Password",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"RESET_TOKEN\",\n  \"password\": \"newpassword123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/users/reset-password",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "users", "reset-password"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🏨 Room Management Endpoints",
+      "item": [
+        {
+          "name": "GET /api/rooms - Get All Rooms",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/rooms",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "rooms"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/rooms/:id - Get Room by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/rooms/ROOM_ID_HERE",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "rooms", "ROOM_ID_HERE"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /api/rooms - Create Room (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer ADMIN_TOKEN_HERE" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Conference Room\",\n  \"description\": \"Large conference room\",\n  \"capacity\": 20,\n  \"amenities\": [\"Projector\", \"Whiteboard\"],\n  \"pricePerHour\": 50,\n  \"location\": {\n    \"building\": \"Main Building\",\n    \"floor\": \"2nd Floor\"\n  }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/rooms",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "rooms"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH /api/rooms/:id - Update Room (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer ADMIN_TOKEN_HERE" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"pricePerHour\": 60\n}" },
+            "url": {
+              "raw": "http://localhost:8000/api/rooms/ROOM_ID_HERE",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "rooms", "ROOM_ID_HERE"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /api/rooms/:id - Delete Room (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer ADMIN_TOKEN_HERE" }],
+            "url": {
+              "raw": "http://localhost:8000/api/rooms/ROOM_ID_HERE",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "rooms", "ROOM_ID_HERE"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "📅 Reservation System Endpoints",
+      "item": [
+        {
+          "name": "POST /api/reservations - Create Reservation",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer USER_TOKEN_HERE" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"room\": \"ROOM_ID_HERE\",\n  \"startTime\": \"2025-01-15T10:00:00.000Z\",\n  \"endTime\": \"2025-01-15T12:00:00.000Z\",\n  \"purpose\": \"Team Meeting\",\n  \"attendees\": 8\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/reservations",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "reservations"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/reservations/my-reservations - Get User Reservations",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer USER_TOKEN_HERE" }],
+            "url": {
+              "raw": "http://localhost:8000/api/reservations/my-reservations",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "reservations", "my-reservations"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/reservations/:id - Get Reservation by ID",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer USER_TOKEN_HERE" }],
+            "url": {
+              "raw": "http://localhost:8000/api/reservations/RESERVATION_ID_HERE",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "reservations", "RESERVATION_ID_HERE"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH /api/reservations/:id/cancel - Cancel Reservation",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Authorization", "value": "Bearer USER_TOKEN_HERE" }],
+            "url": {
+              "raw": "http://localhost:8000/api/reservations/RESERVATION_ID_HERE/cancel",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "reservations", "RESERVATION_ID_HERE", "cancel"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /api/reservations/check-availability - Check Availability",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer USER_TOKEN_HERE" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"room\": \"ROOM_ID_HERE\",\n  \"startTime\": \"2025-01-15T10:00:00.000Z\",\n  \"endTime\": \"2025-01-15T12:00:00.000Z\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/reservations/check-availability",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "reservations", "check-availability"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "👑 Admin Management Endpoints",
+      "item": [
+        {
+          "name": "GET /api/users/admin/users - Get All Users (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer ADMIN_TOKEN_HERE" }],
+            "url": {
+              "raw": "http://localhost:8000/api/users/admin/users",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "users", "admin", "users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH /api/users/admin/users/:id/role - Update User Role (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer ADMIN_TOKEN_HERE" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"role\": \"admin\"\n}" },
+            "url": {
+              "raw": "http://localhost:8000/api/users/admin/users/USER_ID_HERE/role",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "users", "admin", "users", "USER_ID_HERE", "role"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/reservations/admin/all - Get All Reservations (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer ADMIN_TOKEN_HERE" }],
+            "url": {
+              "raw": "http://localhost:8000/api/reservations/admin/all",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "reservations", "admin", "all"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH /api/reservations/admin/:id/status - Update Reservation Status (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer ADMIN_TOKEN_HERE" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"status\": \"completed\"\n}" },
+            "url": {
+              "raw": "http://localhost:8000/api/reservations/admin/RESERVATION_ID_HERE/status",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "reservations", "admin", "RESERVATION_ID_HERE", "status"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
